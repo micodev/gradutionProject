@@ -935,7 +935,7 @@ class MainView extends StatelessWidget {
       Get.rawSnackbar(message: "جاري تحميل الصورة");
       final file = await DefaultCacheManager().getSingleFile(image!);
       await ImageGallerySaver.saveImage(await file.readAsBytes(),
-          name: "فرجال");
+          name: "ايجوكيشن");
       Get.rawSnackbar(message: "تم التحميل الصورة بنجاح");
     }
   }

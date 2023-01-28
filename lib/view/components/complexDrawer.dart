@@ -139,7 +139,7 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
               fit: BoxFit.fill,
             )),
         title: Text(
-          "منصة فرجال",
+          "منصة ايجوكيشن",
           style: TextStyle(color: context.theme.backgroundColor),
         ),
         onTap: expandOrShrinkDrawer,

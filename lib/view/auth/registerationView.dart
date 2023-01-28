@@ -2,7 +2,6 @@ import 'package:clippy_flutter/diagonal.dart';
 import 'package:flight_booking_sys/controller/scaffoldController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bootstrap/flutter_bootstrap.dart';
 import 'package:loading_animations/loading_animations.dart';
 import '../../constants/constantsVariables.dart';
@@ -16,7 +15,7 @@ class RegisterationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bootstrapGridParameters(gutterSize: 0);
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       ScaffoldController.controller.showAppbar.value = false;
     });
     return registerationFormBuilder(context);
@@ -72,10 +71,10 @@ class RegisterationView extends StatelessWidget {
                 child: Container(
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Image.asset(
-                      'assets/icon_no_background.png',
-                      fit: BoxFit.fill,
-                    ),
+                    // child: Image.asset(
+                    //   'assets/icon.png',
+                    //   fit: BoxFit.fill,
+                    // ),
                   ),
                   height: Get.height / 9,
                   decoration: BoxDecoration(
@@ -135,6 +134,7 @@ class RegisterationView extends StatelessWidget {
                         if (_val.trim().length == 0) return "هذا الحقل مطلوب";
                         if (_val.length < 2)
                           return "يجب أن يكون الإسم أكثر من حرف";
+                        return null;
                       }, controller: auth.firstName),
                     )),
                   if (auth.isRegisterForm.value)
@@ -148,6 +148,7 @@ class RegisterationView extends StatelessWidget {
                         if (_val.trim().length == 0) return "هذا الحقل مطلوب";
                         if (_val.length < 2)
                           return "يجب أن يكون اللقب أكثر من حرف";
+                        return null;
                       }, controller: auth.lastName),
                     )),
                   BootstrapCol(
@@ -160,6 +161,7 @@ class RegisterationView extends StatelessWidget {
                         ], validator: (val) {
                       String _val = val ?? '';
                       if (_val.trim().length == 0) return "هذا الحقل مطلوب";
+                      return null;
                     }, controller: auth.username),
                   )),
                   if (auth.isRegisterForm.value)
@@ -179,6 +181,7 @@ class RegisterationView extends StatelessWidget {
                             !RegExp('^(077||078||075)(?=[0-9]{8}\$)[0-9]+(?<![_.])\$')
                                 .hasMatch(_val))
                           return "يجب أدخال رقم صالح ( مثال 07700459826 )\nيجب أن يبدأ بـ 077 , 078 , 075";
+                        return null;
                       }, controller: auth.phoneNumber),
                     )),
                   if (auth.isRegisterForm.value)
@@ -195,6 +198,7 @@ class RegisterationView extends StatelessWidget {
                               .hasMatch(_val))
                             return "البريد الإلكتروني غير صالح";
                         }
+                        return null;
                       }, controller: auth.email),
                     )),
                   BootstrapCol(
@@ -214,6 +218,7 @@ class RegisterationView extends StatelessWidget {
                       if (_val.trim().length == 0) return "هذا الحقل مطلوب";
                       if (_val.trim().length < 6 || _val.trim().length > 30)
                         return "يجب أن يكون الرمز اكثر من ٦ حرف أو رمز";
+                      return null;
                     },
                         controller: auth.password,
                         obscureText: !auth.isVisiblePassword.value),
@@ -224,7 +229,7 @@ class RegisterationView extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 10),
                       child: OutlinedButton(
                         style: OutlinedButton.styleFrom(
-                          primary: auth.birthDateInvalid.value
+                          foregroundColor: auth.birthDateInvalid.value
                               ? Theme.of(context).errorColor
                               : null,
                           side: auth.birthDateInvalid.value

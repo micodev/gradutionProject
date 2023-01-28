@@ -341,7 +341,7 @@ Future<Either<ErrorModel?, ResponseModel?>> logoutUserApi() async {
 
 Future<Either<ErrorModel?, ResponseModel?>> replaceTokenApi(
     String oldToken, String newToken) async {
-  ResponseModel response = await dioPost(
+  ResponseModel response = await dioPut(
     "replace_token_firebase",
     {"old_token": oldToken, "new_token": newToken},
     type: "user",
